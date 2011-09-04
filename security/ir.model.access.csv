@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_gruppi_val","gruppo.val","model_gruppi_val",,1,1,1,1
+"access_categoria_val","categoria.val","model_categoria_val",,1,1,1,1
+"access_costi_prestazioni","costi.prestazioni","model_costi_prestazioni",,1,1,1,1
+"access_skcosti_prod_head","skcosti.prod.head","model_skcosti_prod_head",,1,1,1,1
+"access_skcosti_prod_line","skcosti.prod.line","model_skcosti_prod_line",,1,1,1,1
+"access_product_skprod","product.skprod","model_product_skprod",,1,1,1,1

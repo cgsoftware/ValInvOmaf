@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+      
+     <menuitem name="Valorizzazione Costi" id="menu_valorizzazioni" parent="mrp.menu_mrp_bom" />
+      
+      <!--  GRUPPI DI VALORIZZAZIONE -->
+      
+      
+	<record id="view_gruppival_tree" model="ir.ui.view">
+            <field name="name">gruppival.tree</field>
+	    <field name="model">gruppi.val</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Raggruppamenti di Costo">
+                	<field name="name" select="1"/>
+                	<field name="descrizione" select="1"/>
+		</tree>
+            </field>
+     </record>
+
+     <record id="view_gruppival_form" model="ir.ui.view">
+            <field name="name">gruppival.form</field>
+	<field name="model">gruppi.val</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Raggruppamenti di Costo">
+                	<field name="name" select="1"/>
+                	<field name="descrizione" select="1"/>
+		</form>
+            </field>
+     </record>
+      
+          
+     
+     
+          <record id="action_gruppival" model="ir.actions.act_window">
+            <field name="name">Raggruppamenti Valorizzazioni</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gruppi.val</field>
+		<field name="view_mode">tree,form</field>
+     </record>
+
+
+<menuitem action="action_gruppival" id="menu_gruppicoval_tree" parent="menu_valorizzazioni" />       
+
+
+     <!--  CATEGORIE DI VALORIZZAZIONE -->
+      
+      
+	<record id="view_catval_tree" model="ir.ui.view">
+            <field name="name">catval.tree</field>
+	    <field name="model">categoria.val</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Categorie di Valorizzazione">
+                	<field name="name" select="1"/>
+                	<field name="descrizione" select="1"/>
+		</tree>
+            </field>
+     </record>
+
+     <record id="view_catval_form" model="ir.ui.view">
+            <field name="name">catval.form</field>
+	<field name="model">categoria.val</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Categoria di Valorizzazione">
+                	<field name="name" select="1"/>
+                	<field name="descrizione" select="1"/>
+		</form>
+            </field>
+     </record>
+      
+      
+     <record id="action_catval" model="ir.actions.act_window">
+            <field name="name">Categorie di Valorizzazione</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">categoria.val</field>
+		<field name="view_mode">tree,form</field>
+     </record>
+
+<menuitem action="action_catval" id="menu_catval_tree" parent="menu_valorizzazioni" />    
+
+     <!-- COSTI BASE costi_prestazioni  -->
+     
+	<record id="view_costiprest_tree" model="ir.ui.view">
+            <field name="name">costiprest.tree</field>
+	    <field name="model">costi.prestazioni</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Costi Prestazioni Base">
+                	<field name="name" select="1"/>
+                	<field name="descrizione" select="1"/>
+			<field name="gruppo_val" select="1"/>
+		</tree>
+            </field>
+     </record>
+
+     <record id="view_costiprest_form" model="ir.ui.view">
+            <field name="name">costiprest.form</field>
+	<field name="model">costi.prestazioni</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Costi Prestazioni Base">
+                	<field name="name" select="1"/>
+                	<field name="descrizione" select="1"/>
+			<field name="gruppo_val" select="1"/>
+			<field name="costo" />
+		</form>
+            </field>
+     </record>
+      
+      
+     <record id="action_costiprest" model="ir.actions.act_window">
+            <field name="name">Costi Prestazioni</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">costi.prestazioni</field>
+		<field name="view_mode">tree,form</field>
+     </record>
+
+<menuitem action="action_costiprest" id="menu_costiprest_tree" parent="menu_valorizzazioni" />    
+
+
+ <!-- GESTIONE SCHEDE COSTI DI PRODUZIONE -->
+
+        <!--  tree ricerca  -->  
+        
+        <record id="skcostiprod_view_tree" model="ir.ui.view">
+            <field name="name">skcostipro.tree</field>
+            <field name="model">skcosti.prod.head</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Gestione Schede Costi Produzione">
+                    <field name="name" select="1"/>
+                    <field name="descrizione" select="1"/>                    
+                </tree>
+            </field>
+        </record>
+
+        <!--  form Gestione Schede di Produzione -->
+        <record id="skcostiprod_form" model="ir.ui.view">
+	  
+            <field name="name">skcostiprod.form</field>
+            <field name="model">skcosti.prod.head</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Gestione Schede Costi Produzione">
+                    <group col="6" colspan="4">
+                        <field name="name" select="1"/>
+                       <newline/>
+                        <field name="descrizione" select="1"/>
+			<field name="costo_fisso" />
+                   </group>     
+                    <newline/>
+                    <separator string="Righe Prestazioni" colspan="4"/>
+                    <field name="righe_prestaz" nolabel="1" mode="tree,form" string="Effetti della Distinta">
+                        <tree editable="top"  string="Dettaglio Costi Prestazioni">
+                            <field name="cod_costo" size='30' />
+                            <field name="qta_prest" size='30' />
+                            <field name="gruppo_val" size='30' />
+                            <field name="costo" size='30' />
+                        </tree>
+                        <form>
+                            <field name="cod_costo" size='30' />
+                            <field name="qta_prest" size='30' />
+                            <field name="gruppo_val" size='30' />
+                            <field name="costo" size='30' />
+ 			  
+                        </form>
+                    </field>                    
+                </form>
+            </field>
+        </record>
+	
+	
+	<record id="action_skcostiprod_form" model="ir.actions.act_window">
+            <field name="name">Schede Costi Produzione</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">skcosti.prod.head</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+  <menuitem action="action_skcostiprod_form" id="menu_skcostiprod_tree" parent="menu_valorizzazioni" />    
+  
+  <!--  ARTICOLO -->
+    <record id="product_product_costiprod_form_view" model="ir.ui.view">
+      <field name="name">product.product.costiprod</field>
+      <field name="model">product.product</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="product.product_normal_form_view" />
+      <field name="arch" type="xml">
+  		<notebook position="inside">
+					<page string="Schede Costi di Produzione">
+	                		<field name="tipo_valoriz" nolabel="1" mode="tree,form" string="Schede di Produzione Possibili">
+	                			<tree editable="top">
+	                				<field name="categoria_val" size='30' />
+	                				<field name="schedaco_id" size='10'/>                				
+	                			</tree>
+	                			<form>
+	                				<field name="categoria_val" size='30' />
+	                				<field name="schedaco_id" size='10'/>                				
+	                			</form>
+	                		</field>
+					<newline />
+					</page>
+		</notebook>
+      </field>
+    </record>    
+
+  
+  
+    </data>
+ </openerp>
